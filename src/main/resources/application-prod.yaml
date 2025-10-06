@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:${POSTGRES_HOST:localhost}}:${DB_PORT:5432}/${DB_NAME:webshop}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    user: ${FLYWAY_USER:${DB_USERNAME}}
+    password: ${FLYWAY_PASSWORD:${DB_PASSWORD}}
+    schemas: ${DB_SCHEMA:public}
